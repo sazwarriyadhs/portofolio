@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {
   ArrowUpRight,
   FileText,
@@ -25,11 +26,14 @@ export default function Home() {
         <section className="grid-bg relative isolate flex min-h-screen items-center overflow-hidden pt-16">
           {/* HEADER BACKGROUND */}
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/background_header.png"
               alt=""
               aria-hidden="true"
-              className="h-full w-full object-cover object-center"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
             />
           </div>
 

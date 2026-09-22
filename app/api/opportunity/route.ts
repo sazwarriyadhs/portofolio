@@ -1,3 +1,4 @@
+
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { promises as fs } from 'fs';
@@ -73,6 +74,19 @@ function clean(value: unknown, max = 500) {
     .slice(0, max);
 }
 
+function isValidHttpUrl(value: string) {
+  try {
+    const url = new URL(value);
+
+    return (
+      url.protocol === 'http:' ||
+      url.protocol === 'https:'
+    );
+  } catch {
+    return false;
+  }
+}
+
 async function saveLead(record: OpportunityRecord) {
   const dataDir = path.join(process.cwd(), 'data');
   const file = path.join(dataDir, 'opportunities.json');
@@ -83,10 +97,10 @@ async function saveLead(record: OpportunityRecord) {
 
   try {
     const existing = await fs.readFile(file, 'utf8');
-    records = JSON.parse(existing);
+    const parsed = JSON.parse(existing);
 
-    if (!Array.isArray(records)) {
-      records = [];
+    if (Array.isArray(parsed)) {
+      records = parsed;
     }
   } catch {
     records = [];
@@ -130,8 +144,7 @@ async function sendWebhook(record: OpportunityRecord) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body =
-      (await request.json()) as OpportunityPayload;
+    const body = (await request.json()) as OpportunityPayload;
 
     // Honeypot anti-spam field.
     if (clean(body.website, 200)) {
@@ -169,17 +182,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (budget && !ALLOWED_BUDGETS.includes(budget)) {
+    if (
+      budget &&
+      !ALLOWED_BUDGETS.includes(budget)
+    ) {
       return jsonError('Invalid budget selection.');
     }
 
-    if (timeline && !ALLOWED_TIMELINES.includes(timeline)) {
+    if (
+      timeline &&
+      !ALLOWED_TIMELINES.includes(timeline)
+    ) {
       return jsonError('Invalid timeline selection.');
     }
 
     if (
       reference &&
-      !/^https?:\/\/.+/i.test(reference)
+      !isValidHttpUrl(reference)
     ) {
       return jsonError(
         'Reference must be a valid http or https URL.',
@@ -191,7 +210,9 @@ export async function POST(request: NextRequest) {
       request.headers.get('x-real-ip') ??
       '';
 
-    const ip = forwardedFor.split(',')[0]?.trim();
+    const ip = forwardedFor
+      .split(',')[0]
+      ?.trim();
 
     const record: OpportunityRecord = {
       id: randomUUID(),
@@ -207,7 +228,8 @@ export async function POST(request: NextRequest) {
       reference,
       ip,
       userAgent:
-        request.headers.get('user-agent') ?? undefined,
+        request.headers.get('user-agent') ??
+        undefined,
     };
 
     await saveLead(record);

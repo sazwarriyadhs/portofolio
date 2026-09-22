@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeft, Download, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowLeft, Download, Github, Linkedin, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CVPage() {

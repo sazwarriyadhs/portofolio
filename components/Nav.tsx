@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 const links = [
@@ -10,7 +11,7 @@ const links = [
   ['GitHub', '#github'],
   ['Opportunity', '/opportunity'],
   ['Contact', '#contact'],
-];
+] as const;
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -19,27 +20,34 @@ export default function Nav() {
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/60 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         {/* BRAND */}
-        <a
+        <Link
           href="/"
           className="mono text-sm font-bold tracking-widest"
         >
           AZWAR<span className="text-sky-300">.</span>
-        </a>
+        </Link>
 
         {/* DESKTOP NAV */}
         <nav className="hidden items-center gap-2 md:flex">
           {links.map(([label, href]) => {
             const isOpportunity = label === 'Opportunity';
+            const className = isOpportunity
+              ? 'rounded-full border border-sky-300/30 bg-sky-300/10 px-4 py-2 text-sm font-semibold text-sky-200 backdrop-blur-sm transition-all duration-300 hover:border-sky-300/60 hover:bg-sky-300/20 hover:text-white hover:shadow-[0_0_20px_rgba(125,211,252,0.12)]'
+              : 'rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-slate-300 backdrop-blur-sm transition-all duration-300 hover:border-white/25 hover:bg-white/[0.07] hover:text-white';
 
-            return (
+            return href.startsWith('/') ? (
+              <Link
+                key={href}
+                href={href}
+                className={className}
+              >
+                {label}
+              </Link>
+            ) : (
               <a
                 key={href}
                 href={href}
-                className={
-                  isOpportunity
-                    ? 'rounded-full border border-sky-300/30 bg-sky-300/10 px-4 py-2 text-sm font-semibold text-sky-200 backdrop-blur-sm transition-all duration-300 hover:border-sky-300/60 hover:bg-sky-300/20 hover:text-white hover:shadow-[0_0_20px_rgba(125,211,252,0.12)]'
-                    : 'rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-sm text-slate-300 backdrop-blur-sm transition-all duration-300 hover:border-white/25 hover:bg-white/[0.07] hover:text-white'
-                }
+                className={className}
               >
                 {label}
               </a>
@@ -49,6 +57,7 @@ export default function Nav() {
 
         {/* MOBILE MENU BUTTON */}
         <button
+          type="button"
           aria-label="Toggle navigation"
           aria-expanded={open}
           onClick={() => setOpen(!open)}
@@ -63,17 +72,25 @@ export default function Nav() {
         <nav className="container grid gap-2 border-t border-white/10 py-5 md:hidden">
           {links.map(([label, href]) => {
             const isOpportunity = label === 'Opportunity';
+            const className = isOpportunity
+              ? 'rounded-xl border border-sky-300/30 bg-sky-300/10 px-4 py-3 font-semibold text-sky-200 transition-all duration-300 hover:border-sky-300/50 hover:bg-sky-300/20 hover:text-white'
+              : 'rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-slate-300 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:text-white';
 
-            return (
+            return href.startsWith('/') ? (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className={className}
+              >
+                {label}
+              </Link>
+            ) : (
               <a
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className={
-                  isOpportunity
-                    ? 'rounded-xl border border-sky-300/30 bg-sky-300/10 px-4 py-3 font-semibold text-sky-200 transition-all duration-300 hover:border-sky-300/50 hover:bg-sky-300/20 hover:text-white'
-                    : 'rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 text-slate-300 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:text-white'
-                }
+                className={className}
               >
                 {label}
               </a>
