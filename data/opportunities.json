@@ -1,17 +1,1 @@
-[
-  {
-    "id": "83e2ccde-6d8e-4060-8a14-bdeb4208182d",
-    "createdAt": "2026-09-22T14:59:19.094Z",
-    "inquiryType": "Project Development",
-    "name": "Zack Test",
-    "email": "test@example.com",
-    "company": "Demo Company",
-    "project": "AI Platform",
-    "message": "This is a production pipeline test for the Portfolio V6 opportunity system.",
-    "budget": "$10K – $50K",
-    "timeline": "1–3 months",
-    "reference": "https://example.com",
-    "ip": "::1",
-    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Microsoft Windows 10.0.26200; en-ID) PowerShell/7.6.6"
-  }
-]
+[]
