@@ -1,0 +1,584 @@
+@import "tailwindcss";
+
+/* =========================================================
+   PORTFOLIO V6 — GLOBAL DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+  --bg: #06070a;
+  --bg-soft: #090b10;
+  --panel: #0c0f14;
+  --panel-soft: #11151d;
+
+  --text: #f4f7fb;
+  --muted: #8b95a7;
+  --muted-2: #647084;
+
+  --line: rgba(255, 255, 255, 0.1);
+  --line-soft: rgba(255, 255, 255, 0.06);
+
+  --accent: #7dd3fc;
+  --accent-2: #a78bfa;
+  --accent-3: #67e8f9;
+
+  --radius: 18px;
+  --radius-lg: 24px;
+  --container: 1180px;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(125, 211, 252, 0.055),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(167, 139, 250, 0.055),
+      transparent 30%
+    ),
+    var(--bg);
+  color: var(--text);
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(125, 211, 252, 0.04),
+      transparent 40%
+    );
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+::selection {
+  background: rgba(125, 211, 252, 0.25);
+  color: #ffffff;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text);
+  line-height: 1.15;
+}
+
+p {
+  color: var(--muted);
+}
+
+.mono {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+}
+
+.kicker {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.container {
+  width: min(var(--container), calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 110px 0;
+}
+
+.section-sm {
+  padding: 70px 0;
+}
+
+.section-header {
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+
+.section-title {
+  margin-bottom: 16px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: -0.04em;
+}
+
+.section-description {
+  max-width: 680px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   GRID BACKGROUND
+   ========================================================= */
+
+.grid-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    rgba(0, 0, 0, 0.35),
+    transparent
+  );
+}
+
+/* =========================================================
+   GLASS
+   ========================================================= */
+
+.glass {
+  background: rgba(12, 15, 20, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(125, 211, 252, 0.12),
+      transparent 35%
+    );
+
+  transition: opacity 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(125, 211, 252, 0.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(125, 211, 252, 0.08),
+      rgba(167, 139, 250, 0.035)
+    );
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.28),
+    0 0 30px rgba(125, 211, 252, 0.04);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* =========================================================
+   GLOBAL BUTTON SYSTEM
+   ========================================================= */
+
+/*
+  V6 BUTTON RULE:
+
+  No solid white CTA.
+  No black CTA.
+  No gradient CTA.
+
+  All buttons use dark glass surfaces.
+*/
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 44px;
+  padding: 0 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(125, 211, 252, 0.4);
+  background: rgba(125, 211, 252, 0.08);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 24px rgba(125, 211, 252, 0.08),
+    0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* PRIMARY */
+
+.btn-primary {
+  border-color: rgba(125, 211, 252, 0.3);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(125, 211, 252, 0.12),
+      rgba(167, 139, 250, 0.08)
+    );
+
+  color: #bae6fd;
+
+  box-shadow:
+    0 0 24px rgba(125, 211, 252, 0.05);
+}
+
+.btn-primary:hover {
+  border-color: rgba(125, 211, 252, 0.6);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(125, 211, 252, 0.2),
+      rgba(167, 139, 250, 0.14)
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 28px rgba(125, 211, 252, 0.12),
+    0 14px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* SECONDARY */
+
+.btn-secondary {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(125, 211, 252, 0.4);
+  background: rgba(125, 211, 252, 0.08);
+  color: #bae6fd;
+}
+
+/* GHOST */
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  color: #ffffff;
+}
+
+/* =========================================================
+   BADGES / TAGS
+   ========================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  min-height: 30px;
+  padding: 5px 10px;
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-accent {
+  border-color: rgba(125, 211, 252, 0.2);
+  background: rgba(125, 211, 252, 0.07);
+  color: var(--accent);
+}
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.divider {
+  height: 1px;
+  width: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--line),
+      transparent
+    );
+}
+
+/* =========================================================
+   GLOW
+   ========================================================= */
+
+.glow {
+  box-shadow:
+    0 0 80px rgba(125, 211, 252, 0.06),
+    0 0 120px rgba(167, 139, 250, 0.04);
+}
+
+.text-gradient {
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 15%,
+      var(--accent) 55%,
+      var(--accent-2) 100%
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid var(--bg);
+  border-radius: 999px;
+  background: #242b36;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #343e4d;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 28px, var(--container));
+  }
+
+  .section {
+    padding: 78px 0;
+  }
+
+  .section-sm {
+    padding: 52px 0;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-size: clamp(1.9rem, 9vw, 2.7rem);
+  }
+
+  .section-description {
+    font-size: 0.98rem;
+  }
+
+  .grid-bg::before {
+    background-size: 32px 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
