@@ -236,7 +236,7 @@ export async function POST(request: NextRequest) {
     };
     const result = await transporter.sendMail({
       from: `"Azwar Riyadh Subarkah | Portfolio" <${gmailUser}>`,
-      to: 'ptdigimediakomunika@gmail.com',
+      to: 'ptdigimedia@gmail.com',
       cc: 'azwarriyadhdev@gmail.com',
       replyTo: email,
       subject: `[Portfolio Inquiry] ${inquiryType}`,
