@@ -39,10 +39,57 @@ const timelines = [
 export default function OpportunityPage() {
   const [type, setType] = useState<InquiryType>('Project Development');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    const payload = {
+      inquiryType: type,
+      name: String(data.get('name') ?? '').trim(),
+      email: String(data.get('email') ?? '').trim(),
+      company: String(data.get('company') ?? '').trim(),
+      project: String(data.get('project') ?? '').trim(),
+      message: String(data.get('message') ?? '').trim(),
+      budget: String(data.get('budget') ?? '').trim(),
+      timeline: String(data.get('timeline') ?? '').trim(),
+      reference: String(data.get('reference') ?? '').trim(),
+      website: String(data.get('website') ?? '').trim(),
+    };
+
+    try {
+      const response = await fetch('/api/opportunity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || 'Unable to send your inquiry.');
+      }
+
+      setSubmitted(true);
+      form.reset();
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again.',
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -173,10 +220,7 @@ export default function OpportunityPage() {
                 </h2>
 
                 <p className="mt-4 max-w-md text-sm leading-7 text-slate-400">
-                  Your opportunity details have been captured.
-                  The next step is connecting this form to the
-                  preferred business communication channel.
-                </p>
+                  Your inquiry has been successfully submitted. Thank you for reaching out. We will review your opportunity and get back to you.</p>
 
                 <button
                   type="button"
@@ -188,7 +232,10 @@ export default function OpportunityPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div>
+                                <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                  <label htmlFor="website">Website</label>
+                  <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div><div>
                   <p className="mono text-xs text-sky-300">
                     STEP 01
                   </p>
@@ -354,11 +401,17 @@ export default function OpportunityPage() {
                     </p>
                   </div>
 
+                  {submitError && (
+                    <p role="alert" className="mb-4 text-sm leading-6 text-red-400">
+                      {submitError}
+                    </p>
+                  )}
                   <button
                     type="submit"
+                    disabled={isSubmitting}
                     className="rounded-full bg-white px-7 py-3.5 text-sm font-bold text-black transition hover:bg-sky-200"
                   >
-                    Start the conversation →
+                    {isSubmitting ? 'Sending inquiry...' : 'Send inquiry →'}
                   </button>
                 </div>
               </form>
