@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import {
-  ArrowUpRight,
   Globe2,
   Users,
   Code2,
@@ -523,4 +522,5 @@ export default function Home() {
     </>
   );
 }
+
 
