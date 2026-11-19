@@ -35,7 +35,7 @@ export default function CVPage() {
             <div className="flex flex-col justify-between gap-6 sm:flex-row">
               <div>
                 <p className="mono text-xs tracking-[0.25em] text-sky-300 print:text-slate-600">
-                  AI TRANSFORMATION LEADER
+                  SENIOR AI ENGINEER · SOFTWARE ARCHITECT
                 </p>
 
                 <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl print:text-black">
@@ -43,7 +43,7 @@ export default function CVPage() {
                 </h1>
 
                 <p className="mt-3 text-lg text-slate-400 print:text-slate-700">
-                  Senior Software Architect · AI Engineer · Full-Stack Developer
+                  Senior AI Engineer · Senior Software Architect · Full-Stack Engineer
                 </p>
               </div>
 
@@ -81,18 +81,11 @@ export default function CVPage() {
             <h2 className="cv-heading">Professional Profile</h2>
 
             <p className="cv-text">
-              AI Transformation Leader and Senior Software Architect with
-              extensive experience designing and building intelligent digital
-              systems across artificial intelligence, backend engineering,
-              full-stack development, mobile applications, data platforms,
-              cloud infrastructure, and blockchain technologies.
+              Senior AI Engineer, Software Architect and technology leader with 23+ years of experience across enterprise software, AI-enabled products, backend engineering, full-stack development, mobile applications and data platforms. Career experience spans production delivery, software development and prototypes.
             </p>
 
             <p className="cv-text">
-              Focused on transforming business requirements into scalable
-              software architectures, production-ready applications, and
-              AI-enabled products that connect strategy, engineering, data,
-              and user experience.
+              Combines hands-on engineering with architecture and delivery leadership: translating complex business requirements into maintainable systems, guiding cross-functional teams and connecting strategy, engineering, data and user experience. Open to international opportunities requiring employer-sponsored work authorization.
             </p>
           </section>
 
@@ -161,44 +154,36 @@ export default function CVPage() {
           {/* SELECTED WORK */}
           <section className="mt-8">
             <h2 className="cv-heading">Selected Engineering Work</h2>
-
             <div className="space-y-6">
               <div>
-                <h3 className="cv-title">RASMART AI</h3>
-                <p className="cv-text">
-                  AI-enabled retail ecosystem combining customer applications,
-                  backend services, delivery operations, loyalty, promotion
-                  intelligence, recommendation, forecasting, and AI shopping
-                  assistance.
-                </p>
+                <h3 className="cv-title">RIQABAH — Halal Slaughter & Processing Intelligence</h3>
+                <p className="cv-text">An integrated operational assurance platform for halal slaughterhouses and meat processing, combining six connected applications with AI, GPS, QR and related capabilities. Designed to support operational visibility and evidence workflows, not replace regulators, auditors or religious authorities.</p>
               </div>
-
               <div>
-                <h3 className="cv-title">Borneo Sentinel</h3>
-                <p className="cv-text">
-                  Regional disaster intelligence platform integrating
-                  geospatial intelligence, incident monitoring, risk analysis,
-                  AI prediction, anomaly detection, and field decision support.
-                </p>
+                <h3 className="cv-title">DigiAI — Generative AI Creative Tools</h3>
+                <p className="cv-text">A generative AI web application that converts Indonesian-language prompts into images and short videos, including image-to-video workflows.</p>
               </div>
-
               <div>
-                <h3 className="cv-title">MegaTrust EW</h3>
-                <p className="cv-text">
-                  Multi-hazard early-warning architecture covering earthquake,
-                  volcano, extreme weather, alerting, impact analysis, and
-                  disaster intelligence.
-                </p>
+                <h3 className="cv-title">Serenity EWS Bogor</h3>
+                <p className="cv-text">A regional early-warning platform concept for weather and multi-hazard awareness, with monitoring dashboards, AI-assisted recommendations and community incident reporting.</p>
               </div>
-
               <div>
-                <h3 className="cv-title">AI Hospitality Reputation Guard</h3>
-                <p className="cv-text">
-                  AI-driven hospitality reputation intelligence platform
-                  designed to audit digital reputation signals and convert
-                  findings into actionable business recommendations.
-                </p>
+                <h3 className="cv-title">VisionAsk</h3>
+                <p className="cv-text">An intelligent document assistant combining OCR and natural-language question answering over uploaded PDF and image content.</p>
               </div>
+              <div>
+                <h3 className="cv-title">Serenity AgriExport Hub & AgroHub</h3>
+                <p className="cv-text">Agriculture and B2B ecosystem platforms covering marketplace workflows, agricultural supply chains, market intelligence and AI-enabled services. AgroHub is in active development.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* EDUCATION */}
+          <section className="mt-8">
+            <h2 className="cv-heading">Education</h2>
+            <div className="space-y-3 text-sm leading-7">
+              <div><strong>Master of Computer Science (M.Kom.)</strong> — Institut Teknologi Bandung (2004–2006)</div>
+              <div><strong>Bachelor of Information Technology (S.Kom.)</strong> — DNBS University (1997–2002)</div>
             </div>
           </section>
 
