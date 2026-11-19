@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import {
   ArrowUpRight,
+  Globe2,
+  Users,
+  Code2,
   FileText,
   BrainCircuit,
   Database,
@@ -62,20 +65,23 @@ export default function Home() {
           <div className="container relative z-10 py-28">
             <Reveal>
               <div className="max-w-4xl">
-                <p className="kicker">AI Transformation Leader</p>
+                <p className="kicker">Senior AI Engineer · Software Architect · Technology Leader</p>
 
                 <h1 className="mt-5 text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
-                  Designing &amp; building
+                  Azwar Riyadh
                   <span className="block bg-gradient-to-r from-sky-300 to-violet-300 bg-clip-text text-transparent">
-                    intelligent digital systems.
+                    Subarkah.
                   </span>
                 </h1>
 
                 <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-                  Senior Software Architect · AI Engineer · Full-Stack
-                  Developer. Building AI, data, mobile, backend and modern
-                  digital products.
+                  Senior AI Engineer and Software Architect with 23+ years across enterprise software, AI-enabled products, data platforms, backend systems and full-stack engineering. I connect architecture, hands-on development and delivery leadership to turn complex business needs into dependable software.
                 </p>
+
+                <div className="mt-7 flex flex-wrap gap-2 text-xs font-medium text-slate-300">
+                  <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-2 text-emerald-200">Open to international opportunities</span>
+                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-2">Employer-sponsored work authorization required</span>
+                </div>
 
                 {/* HERO CTA */}
                 <div className="mt-10 flex flex-wrap gap-4">
@@ -137,6 +143,28 @@ export default function Home() {
                     </div>
                   </div>
                 );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* EXECUTIVE SNAPSHOT */}
+        <section className="section border-b border-white/5 bg-white/[.015]">
+          <div className="container">
+            <Reveal>
+              <p className="kicker">Executive Snapshot</p>
+              <h2 className="mt-3 max-w-3xl text-4xl font-bold sm:text-5xl">Engineering depth. Architecture perspective. Delivery leadership.</h2>
+              <p className="mt-5 max-w-3xl leading-8 text-slate-400">A career spanning production systems, software development and prototypes — from hands-on engineering to solution architecture and technology team leadership. Experienced in cross-functional delivery and leading engineering teams, including an 18-developer organization.</p>
+            </Reveal>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                [Code2, '23+', 'Years in technology'],
+                [Users, '18', 'Developers led in one team'],
+                [Layers3, 'E2E', 'Architecture to delivery'],
+                [Globe2, 'Global', 'Open to sponsored relocation'],
+              ].map(([Icon, value, label]) => {
+                const C = Icon as typeof Code2;
+                return <div key={label as string} className="glass rounded-2xl p-6"><C className="size-5 text-sky-300" /><div className="mt-4 text-3xl font-bold">{value as string}</div><div className="mt-2 text-sm text-slate-400">{label as string}</div></div>;
               })}
             </div>
           </div>
@@ -274,7 +302,7 @@ export default function Home() {
                 'React',
                 'Next.js',
                 'Flutter',
-                'React Native',
+                'C#',
                 'PostgreSQL',
                 'MongoDB',
                 'Redis',
@@ -287,6 +315,7 @@ export default function Home() {
                 'RAG',
                 'AI Agents',
                 'TensorFlow',
+                'SQL',
                 'Solidity',
                 'Ethereum',
                 'IPFS',
